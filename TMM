@@ -1,0 +1,10 @@
+<h1>TMM - The Medical Mind</h1>
+
+<div class="container">
+  <button onclick="connectBluetooth()">🔵 Bluetooth Connection</button>
+  <button onclick="analyze()">🧠 Smart Disease Analysis</button>
+  <button onclick="askAI()">💬 Ask AI Assistant</button>
+  <button onclick="showAlerts()">🔔 Health Alerts</button>
+</div>
+
+<p id="output"></p>
