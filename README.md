@@ -1,81 +1,53 @@
-# MongoDB Atlas & pymongo Sample Project
+# HW03 — MongoDB Atlas Coursework
 
-This repository contains a very basic example application 
-built with the [pymongo](https://docs.mongodb.com/drivers/pymongo)
-MongoDB Driver that connects to [MongoDB 
-Atlas](https://www.mongodb.com/cloud/atlas). You can use this application
-as a starting point and reference when building your Python applications.
+A learning repository based on the [MongoDB University Atlas Python starter](https://github.com/mongodb-university/atlas_starter_python). It demonstrates connecting with PyMongo and performing create, read, update, and delete operations on sample recipes.
 
-## Prerequisites
+**Stack:** Python · PyMongo · MongoDB Atlas  
+**Stage:** starter exercise; the connection placeholder must be configured before execution.
 
-To build and run this project, you will need:
+## What the script demonstrates
 
-- Python 3.7 or higher
-- The `pymongo` module
-- The `dnspython` module
-- An Atlas account
+- Connect to an Atlas cluster.
+- Insert a group of recipe documents.
+- Read all recipes and find one by ingredient.
+- Update preparation time.
+- Delete selected recipes.
 
-## Getting Started
+## Setup and use
 
-The following instructions explain how to get this project
-connected to your instance of MongoDB Atlas.
-
-### 1. Download the Repository
-
-To get started with this sample project, download this repository to your
-programming environment. You can clone this project using Git
-version control:
-
-```
-git clone git@github.com:mongodb-university/atlas_starter_python.git
+```bash
+git clone https://github.com/dylanf32/HW03.git
+cd HW03
+python -m venv .venv
+python -m pip install pymongo dnspython
 ```
 
-Or you can download the ZIP archive using your browser. If you download
-this project as a ZIP archive, 
-[unzip the archive](https://www.wikihow.com/Unzip-a-File) before proceeding.
+Activate the virtual environment before installing dependencies: `source .venv/bin/activate` on macOS/Linux or `.\.venv\Scripts\Activate.ps1` on Windows.
 
-### 2. Install the modules
+In [atlas-starter.py](atlas-starter.py), replace the literal `<Your Atlas Connection String>` placeholder with a valid Python string or an environment-variable lookup. The placeholder is intentionally unfinished Python syntax.
 
-You can use `pip` to install the necessary Python modules.
-
-```
-pip install pymongo dnspython
-```
-
-### 3. Configure your Atlas Credentials
-
-1. Open the  `atlas-starter.py` file.
-
-2. On line 8, replace the placeholder text with the connection string 
-   to your Atlas cluster. For more information on finding your connection 
-   string, see [the Atlas documentation](https://docs.atlas.mongodb.com/driver-connection/).
+For example, use a local environment variable instead of committing credentials:
 
 ```python
-    client = pymongo.MongoClient(
-      "mongodb+srv://<username>:<password>@<cluster-name>/test?retryWrites=true&w=majority")
+import os
+client = pymongo.MongoClient(os.environ["MONGODB_URI"])
 ```
 
-### 4. Run the program
+Configure an Atlas database user and network access for your machine, set `MONGODB_URI` locally, and then run:
 
-1. At your command prompt, navigate to the `atlas_starter_python` directory.
-
-2. Run the program:
-
-```
+```bash
 python atlas-starter.py
 ```
 
-Assuming you have the correct connection string, you'll see the program
-output. Have fun modifying the code to experiment with pymongo and MongoDB.
+**Data behavior:** the example drops the `myDatabase.recipes` collection before inserting sample records and later deletes two sample recipes. Use a disposable practice database.
 
-## Troubleshooting
+## Repository contents
 
-Are you having trouble getting connected to your MongoDB Atlas instance?
-Double-check the following:
+| File | Purpose |
+| --- | --- |
+| [atlas-starter.py](atlas-starter.py) | Atlas connection and recipe CRUD exercise |
+| `README.md` | Project overview and setup |
 
-1. Have you replaced the placeholder text with a valid connection string
-   provided by the Atlas UI? Read more [here](https://docs.atlas.mongodb.com/driver-connection/)
-   for further context.
+## Attribution
 
-2. Have you [whitelisted your current IP address](https://docs.atlas.mongodb.com/security-whitelist/)
-   in the Atlas UI?
+The starter code and original tutorial come from MongoDB University. This repository is maintained by [Dylan Ferrer](https://github.com/dylanf32) for learning and coursework.
